@@ -1,14 +1,14 @@
-# ALMAS.SYS — Portfolio Website
+# ALMAS.SYS - Portfolio Website
 
 Portfolio pribadi bergaya **terminal/HUD cyberpunk** (React + Vite + Tailwind CSS v4), menampilkan project-project Machine Learning & Software Engineering.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **React 19** + **Vite** — build tool cepat
 - **Tailwind CSS v4** — styling (konfigurasi via `@theme` di `src/index.css`, bukan `tailwind.config.js`)
 - **JetBrains Mono** (Google Fonts) — font monospace di seluruh halaman
 
-## 📂 Struktur Project
+## Struktur Project
 
 ```
 portfolio/
@@ -25,14 +25,14 @@ portfolio/
 └── index.html
 ```
 
-## ✏️ Cara Mengedit Konten
+## Cara Mengedit Konten
 
 - **Tambah/ubah project** → edit `src/data/projects.js`
 - **Ubah skill/kemampuan** → edit `src/data/skills.js`
 - **Ubah info kontak** → edit `src/components/Contact.jsx` (bagian `CHANNELS`)
 - **Ubah warna tema** → edit variabel `--color-*` di `src/index.css` bagian `@theme`
 
-## ▶️ Menjalankan Secara Lokal
+## Menjalankan Secara Lokal
 
 ```sh
 npm install
@@ -41,7 +41,7 @@ npm run dev
 
 Buka `http://localhost:5173`.
 
-## 📦 Build untuk Production
+## Build untuk Production
 
 ```sh
 npm run build
@@ -49,15 +49,3 @@ npm run build
 
 Hasil build ada di folder `dist/`.
 
-## 🚀 Deploy ke Vercel / Netlify
-
-### Vercel
-1. Push project ini ke repository GitHub.
-2. Buka vercel.com -> Add New Project -> pilih repo ini.
-3. Vercel otomatis mendeteksi framework Vite -- biarkan setting default, klik Deploy.
-
-### Netlify
-1. Push project ini ke repository GitHub.
-2. Buka netlify.com -> Add new site -> Import an existing project.
-3. Build command: `npm run build`, Publish directory: `dist`.
-4. Klik Deploy site.

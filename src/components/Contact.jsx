@@ -3,13 +3,13 @@ import { SectionEyebrow } from "./About";
 const CHANNELS = [
   {
     label: "EMAIL",
-    value: "masrurbyu@email.com",
-    href: "mailto:masrurbyu@email.com",
+    value: "halo.almasrur@gmail.com",
+    href: "mailto:halo.almasrur@gmail.com",
   },
   {
     label: "LINKEDIN",
-    value: "in/masrurbyu",
-    href: "https://www.linkedin.com/in/masrurbyu/",
+    value: "in/alif-masrur",
+    href: "https://www.linkedin.com/in/alifmasrur345/",
   },
   {
     label: "GITHUB",

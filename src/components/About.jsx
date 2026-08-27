@@ -22,12 +22,12 @@ export default function About() {
           {/* Panel kiri: bio + data rows, mirip readout weather di referensi */}
           <div className="md:col-span-3 border border-dim-2 bg-panel p-6">
             <p className="text-sm leading-relaxed text-data sm:text-base">
-              Saya suka membedah cara kerja sesuatu dari akarnya —
-              mengimplementasikan arsitektur Transformer manual dengan NumPy,
-              membangun model regresi linear dari nol, sampai merancang
-              pipeline MLOps otomatis dengan MLflow, Docker, dan GitHub
-              Actions. Bagi saya, memahami "kenapa" sesuatu bekerja sama
-              pentingnya dengan hasil akhirnya.
+              I like dissecting how things work from their roots,
+              implementing manual Transformer architecture with NumPy,
+              model Build linear regression from zero, to design
+              automatic MLOps pipeline with MLflow, Docker, and GitHub
+              Actions. For me, understanding "why" something works together
+              importance to the final result.
             </p>
 
             <div className="mt-6 border-t border-dim-2 pt-4">

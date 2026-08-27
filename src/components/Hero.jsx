@@ -36,7 +36,7 @@ export default function Hero() {
         ) : (
           <div className="animate-[fadeIn_0.6s_ease]">
             <p className="mb-4 text-xs tracking-[0.3em] text-muted">
-              // SYSTEM.PORTFOLIO — BUILD 2026.08
+              // SYSTEM.PORTFOLIO
             </p>
             <h1 className="text-glow text-4xl font-extrabold leading-tight tracking-tight text-phosphor sm:text-6xl md:text-7xl">
               ALIF MASRUR
@@ -45,9 +45,9 @@ export default function Hero() {
               [ MACHINE LEARNING &amp; SOFTWARE ENGINEER ]
             </p>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-data sm:text-base">
-              Membangun sistem dari akarnya — dari attention mechanism di
-              Transformer hingga pipeline MLOps otomatis. Setiap project di
-              bawah adalah bukti proses, bukan cuma hasil akhir.
+              Building a system from its roots from attention mechanisms in
+              Transformer to automatic MLOps pipeline. Every project in
+              below is proof of the process, not just the final result.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
