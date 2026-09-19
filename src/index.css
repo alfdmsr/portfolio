@@ -124,3 +124,132 @@ button:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
+/* Terminal identity card */
+.identity-hero {
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 4vw, 64px) clamp(16px, 3vw, 40px);
+  scroll-margin-top: 64px;
+  border-bottom: 1px solid var(--color-dim-2);
+}
+
+.identity-card {
+  --id-accent: #00ffb3;
+  --id-muted: #28a77d;
+  --id-border: #07553c;
+  --id-padding: clamp(16px, 3vw, 40px);
+  width: 100%;
+  max-width: 72rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #80e9c4;
+  background: #040b08;
+  border: 1px solid var(--id-border);
+}
+
+.identity-status,
+.identity-credentials,
+.identity-profile,
+.identity-bio { border-bottom: 1px solid var(--id-border); }
+
+.identity-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.identity-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: clamp(14px, 2vw, 24px) var(--id-padding);
+}
+
+.identity-brand {
+  color: var(--id-accent);
+  font-size: clamp(15px, 2vw, 24px);
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px #00ffb366;
+}
+
+.identity-label { color: var(--id-muted); font-size: clamp(10px, 1.2vw, 14px); letter-spacing: 1.8px; }
+.identity-signal { display: flex; flex-shrink: 0; gap: 3px; }
+.identity-signal i { width: 4px; height: 13px; background: var(--id-accent); }
+.identity-signal i:last-child { opacity: 0.25; }
+.identity-credentials { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; padding: clamp(16px, 2vw, 28px) var(--id-padding); }
+.identity-id { color: #40ffd0; font-size: clamp(28px, 4vw, 48px); font-weight: 800; letter-spacing: 1px; }
+.identity-access { text-align: right; }
+.identity-mask { color: #07845c; font-size: 22px; letter-spacing: 1px; }
+
+.identity-profile {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(20px, 4vw, 64px);
+  padding: var(--id-padding);
+}
+
+.identity-avatar {
+  position: relative;
+  align-self: start;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--id-border);
+  background: radial-gradient(ellipse at 50% 35%, #07583d, #05140e 85%);
+}
+
+.identity-avatar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#30d79755 0.65px, transparent 0.9px),
+    repeating-linear-gradient(transparent 0 2px, #0007 2px 3px);
+  background-size: 3px 3px, 100% 3px;
+}
+
+.identity-avatar-head {
+  position: absolute;
+  top: 24%;
+  left: 33%;
+  width: 34%;
+  height: 34%;
+  border-radius: 50%;
+  background: #023323;
+}
+
+.identity-avatar-body {
+  position: absolute;
+  bottom: -15%;
+  left: 17%;
+  width: 66%;
+  height: 38%;
+  border-radius: 50% 50% 0 0;
+  background: #023323;
+}
+
+.identity-details { position: relative; min-width: 0; }
+.identity-system { padding-right: 34px; color: #3fffd5; font-size: clamp(12px, 1.8vw, 22px); font-weight: 700; letter-spacing: 1.5px; }
+.identity-mark { position: absolute; top: 0; right: 0; width: 25px; height: 25px; border: 1px solid var(--id-border); text-align: center; color: var(--id-muted); }
+.identity-code-label { margin-top: clamp(12px, 2vw, 28px); }
+.identity-code { font-size: clamp(14px, 1.7vw, 20px); letter-spacing: 1px; }
+.identity-japanese { color: #087a53; font-size: clamp(16px, 2vw, 24px); line-height: 1.4; }
+.identity-code + .identity-japanese { margin-top: 8px; }
+.identity-title { color: var(--id-accent); font-size: clamp(23px, 4.2vw, 52px); font-weight: 800; line-height: 1.25; letter-spacing: -1px; text-shadow: 0 0 10px #00ffb344; }
+
+.identity-bio { padding: var(--id-padding); font-size: clamp(13px, 1.6vw, 18px); line-height: 1.75; letter-spacing: 0.5px; text-transform: uppercase; }
+.identity-footer { display: flex; align-items: center; justify-content: center; gap: clamp(10px, 2vw, 24px); padding: clamp(18px, 2.5vw, 28px) var(--id-padding); color: var(--id-muted); font-size: clamp(11px, 1.5vw, 16px); font-weight: 600; text-align: center; }
+.identity-footer > span[aria-hidden] { flex-shrink: 0; }
+
+@media (max-width: 440px) {
+  .identity-status { flex-wrap: wrap; gap: 10px; }
+  .identity-brand { letter-spacing: 1px; }
+  .identity-status .identity-label { letter-spacing: 0.5px; }
+  .identity-profile { grid-template-columns: minmax(0, 1fr); }
+  .identity-avatar { width: 65%; max-width: 220px; justify-self: center; }
+  .identity-title { font-size: clamp(24px, 7vw, 31px); }
+}
