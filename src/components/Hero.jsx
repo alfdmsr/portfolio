@@ -1,7 +1,68 @@
+import { useEffect, useState } from "react";
+
+const BOOT_LINES = [
+  "INITIALIZING SYSTEM.PORTFOLIO...",
+  "LOADING MODULE: MACHINE_LEARNING [OK]",
+  "LOADING MODULE: SOFTWARE_ENGINEERING [OK]",
+  "RENDERING IDENTITY CARD...",
+  "IDENTITY VERIFIED - WELCOME",
+];
+
+const BOOT_STEP_MS = 300;
+
+
 export default function Hero() {
+  const [bootStep, setBootStep] = useState(() => 
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ? BOOT_LINES.length + 1 : 0);
+
+  const isBooting = bootStep <= BOOT_LINES.length;
+
+  useEffect(() => {
+    if (!isBooting) return;
+
+    const timer = window.setTimeout(() => {
+      setBootStep((step) => step + 1);
+    }, BOOT_STEP_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [bootStep, isBooting]); 
+
   return (
-    <section id="top" className="identity-hero" aria-labelledby="hero-title">
-      <article className="identity-card" lang="en">
+    <section id="top" className="identity-hero" aria-label="Profil Alif Masrur">
+      {isBooting && (
+        <div className="identity-boot">
+          <div className="identity-boot-terminal" lang="en">
+            <div className="identity-boot-heading">
+              <span>SYSTEM.PORTFOLIO // BOOT</span>
+              <span>
+                {Math.round((bootStep / BOOT_LINES.length) * 100)}%
+              </span>
+            </div>
+            <p className="sr-only" role="status">
+              Loading portfolio... 
+            </p>
+
+            <div className="identity-boot-lines" aria-hidden="true">
+              {BOOT_LINES.slice(0, bootStep).map((line) => (
+                <p key={line}>
+                  <span>&gt; </span>
+                  {line}
+                </p>
+              ))}
+              <span className="identity-boot-cursor"/>
+            </div>
+
+            <div className="identity-boot-track" aria-hidden="true">
+              <span
+                style={{
+                  width: `${(bootStep / BOOT_LINES.length) * 100}%`,
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+      <article className={`identity-card ${isBooting ? "identity-card-pending" : "identity-card-ready"}`} lang="en" inert={isBooting} aria-hidden={isBooting} aria-labelledby="hero-title">
         <header className="identity-status">
           <span className="identity-brand">ML / SWE</span>
           <span className="identity-label">SYSTEM ONLINE</span>
@@ -20,7 +81,7 @@ export default function Hero() {
         <div className="identity-profile">
           <div className="identity-avatar">
             <img
-              src="/alife.png"
+              src="/alife2.png"
               alt="Alif Masrur"
               className="identity-photo"
             />
