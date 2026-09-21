@@ -89,8 +89,8 @@ export default function Hero() {
           <div className="identity-details">
             <p className="identity-system">SYSTEM.PORTFOLIO</p>
             <span className="identity-mark" aria-hidden="true">/</span>
-            <p className="identity-label identity-code-label">SEC CODE</p>
-            <p className="identity-code">7731A-M-0426</p>
+            <p className="identity-label identity-code-label">ENGINEER CODE</p>
+            <p className="identity-code">ALM-ML-2026</p>
             <p className="identity-japanese" lang="ja">エンジニア</p>
             <h1 id="hero-title" className="identity-title">
               <span className="sr-only">Alif Masrur — </span>
