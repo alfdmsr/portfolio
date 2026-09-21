@@ -335,3 +335,66 @@ button:focus-visible {
     transform: translateY(0);
   }
 }
+/* Technologies used in projects, without self-assessed proficiency scores. */
+.technology-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .technology-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .technology-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+.technology-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 0;
+  min-height: 116px;
+  padding: 18px 10px;
+  border: 1px solid var(--color-dim-2);
+  background: var(--color-void);
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.technology-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background-color: var(--color-phosphor);
+  -webkit-mask: var(--technology-icon) center / contain no-repeat;
+  mask: var(--technology-icon) center / contain no-repeat;
+}
+
+.technology-name {
+  color: var(--color-data);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) {
+  .technology-tile:hover {
+    border-color: var(--color-phosphor);
+    background: var(--color-panel-alt);
+  }
+
+  .technology-tile:hover .technology-icon {
+    filter: drop-shadow(0 0 5px #3effa066);
+  }
+}

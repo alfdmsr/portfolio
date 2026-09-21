@@ -1,26 +1,13 @@
-export const skillGroups = [
-  {
-    category: "MACHINE LEARNING",
-    items: [
-      { name: "Scikit-learn", level: 85 },
-      { name: "TensorFlow / Keras", level: 85 },
-      { name: "Pandas / NumPy", level: 80 },
-    ],
-  },
-  {
-    category: "MLOPS & TOOLS",
-    items: [
-      { name: "MLflow", level: 80 },
-      { name: "Docker", level: 78 },
-      { name: "GitHub Actions", level: 73 },
-    ],
-  },
-  {
-    category: "LANGUAGES",
-    items: [
-      { name: "Python", level: 80 },
-      { name: "Java", level: 35 },
-      { name: "C", level: 50 },
-    ],
-  },
+export const technologies = [
+  { name: "Python", icon: "python" },
+  { name: "Java", icon: "java" },
+  { name: "C", icon: "c" },
+  { name: "Numpy", icon: "numpy" },
+  { name: "Pandas", icon: "pandas" },
+  { name: "Scikit-learn", icon: "scikitlearn" },
+  { name: "TensorFlow", icon: "tensorflow" },
+  { name: "Keras", icon: "keras" },
+  { name: "MLflow", icon: "mlflow" },
+  { name: "Docker", icon: "docker" },
+  { name: "Github Actions", icon: "githubactions" },
 ];
