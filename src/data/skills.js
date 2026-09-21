@@ -9,5 +9,6 @@ export const technologies = [
   { name: "Keras", icon: "keras" },
   { name: "MLflow", icon: "mlflow" },
   { name: "Docker", icon: "docker" },
+  { name: "Git", icon: "git"},
   { name: "Github Actions", icon: "githubactions" },
 ];
