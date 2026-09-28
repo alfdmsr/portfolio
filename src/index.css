@@ -398,3 +398,30 @@ button:focus-visible {
     filter: drop-shadow(0 0 5px #3effa066);
   }
 }
+
+.language-toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  border: 1px solid var(--color-dim);
+}
+
+.language-toggle button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+  color: var(--color-data);
+  cursor: pointer;
+}
+
+.language-toggle button[aria-pressed="true"] {
+  background: var(--color-phosphor);
+  color: var(--color-void);
+}
+
+.language-toggle button:hover:not([aria-pressed="true"]) {
+  background: var(--color-panel-alt);
+}
+
+.identity-title {
+  overflow-wrap: anywhere;
+}

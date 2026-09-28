@@ -1,3 +1,4 @@
+import { useLanguage } from "../i18n/useLanguage";
 import { technologies } from "../data/skills";
 import { SectionEyebrow } from "./About";
 
@@ -19,17 +20,18 @@ function Technology({ name, icon }) {
 }
 
 export default function Skills() {
+  const { t } = useLanguage();
   return (
     <section
       id="skills"
       className="border-b border-dim-2 bg-void grid-bg scroll-mt-20"
     >
       <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <SectionEyebrow index="03" title="TECH_STACK.CFG"></SectionEyebrow>
+        <SectionEyebrow index="03" title={t("TECH_STACK.CFG")}></SectionEyebrow>
 
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-data">Technologies I have used in projects.</p>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-data">{t("technologies")}</p>
 
-        <ul className="technology-grid mt-8" aria-label="Technologies I have used in projects.">
+        <ul className="technology-grid mt-8" aria-label={t("technologies")}>
             {technologies.map((item) => (
               <Technology key={item.name} {...item} />
             ))}

@@ -6,7 +6,7 @@ export const technologies = [
   { name: "Pandas", icon: "pandas" },
   { name: "Scikit-learn", icon: "scikitlearn" },
   { name: "TensorFlow", icon: "tensorflow" },
-  { name: "Keras", icon: "keras" },
+  { name: "PyTorch", icon: "pytorch" },
   { name: "MLflow", icon: "mlflow" },
   { name: "Docker", icon: "docker" },
   { name: "Git", icon: "git"},

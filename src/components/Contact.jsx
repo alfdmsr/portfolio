@@ -1,3 +1,4 @@
+import { useLanguage } from "../i18n/useLanguage";
 import { SectionEyebrow } from "./About";
 
 const CHANNELS = [
@@ -19,15 +20,17 @@ const CHANNELS = [
 ];
 
 export default function Contact() {
+  const { t } = useLanguage();
+
   return (
     <section id="contact" className="bg-void">
       <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-        <SectionEyebrow index="04" title="CONTACT.SEND" />
+        <SectionEyebrow index="04" title={t("CONTACT.SEND")} />
 
         <div className="mt-8 border border-dim-2 bg-panel">
           <div className="flex items-center justify-between border-b border-dim-2 px-5 py-3">
             <span className="text-[11px] tracking-widest text-muted">
-              NOTIFICATIONS
+              {t("NOTIFICATIONS")}
             </span>
             <span className="text-[11px] tracking-widest text-phosphor">
               {CHANNELS.length}
@@ -58,7 +61,7 @@ export default function Contact() {
         </div>
 
         <p className="mt-8 text-center text-[11px] tracking-widest text-dim">
-          READY TO BUILD SOMETHING TOGETHER?
+          {t("READY TO BUILD SOMETHING TOGETHER?")}
         </p>
       </div>
     </section>

@@ -1,9 +1,12 @@
+import { useLanguage } from "../i18n/useLanguage";
+
 const STATUS_STYLES = {
   DEPLOYED: "text-phosphor border-phosphor/50",
   COMPLETE: "text-data border-dim",
 };
 
 export default function ProjectCard({ project }) {
+  const { language, t } = useLanguage();
   const Wrapper = project.url ? "a" : "div";
   const wrapperProps = project.url
     ? { href: project.url, target: "_blank", rel: "noreferrer" }
@@ -16,28 +19,28 @@ export default function ProjectCard({ project }) {
     >
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-sm font-bold tracking-wide text-bright sm:text-base">
-          {project.name}
+          {project.name[language]}
         </h3>
         <span
           className={`shrink-0 border px-2 py-0.5 text-[9px] font-semibold tracking-widest ${
             STATUS_STYLES[project.status] ?? STATUS_STYLES.COMPLETE
           }`}
         >
-          {project.status}
+          {t(project.status)}
         </span>
       </div>
 
       <p className="mt-3 flex-1 text-xs leading-relaxed text-data sm:text-sm">
-        {project.desc}
+        {project.desc[language]}
       </p>
 
       <div className="mt-4 flex flex-wrap gap-1.5">
-        {project.tags.map((t) => (
+        {project.tags.map((tag) => (
           <span
-            key={t}
+            key={tag}
             className="border border-dim-2 px-1.5 py-0.5 text-[9px] tracking-widest text-muted"
           >
-            {t}
+            {t(tag)}
           </span>
         ))}
       </div>
@@ -48,17 +51,17 @@ export default function ProjectCard({ project }) {
         </div>
         <div className="shrink-0 text-right">
           <div className="text-[9px] tracking-widest text-muted">
-            {project.metric.label}
+            {t(project.metric.label)}
           </div>
           <div className="text-xs font-bold text-phosphor">
-            {project.metric.value}
+            {t(project.metric.value)}
           </div>
         </div>
       </div>
 
       {project.url && (
         <div className="mt-3 text-[10px] font-semibold tracking-widest text-dim opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-phosphor">
-          OPEN_REPOSITORY →
+          {t("OPEN_REPOSITORY →")}
         </div>
       )}
     </Wrapper>

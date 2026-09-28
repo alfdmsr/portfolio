@@ -1,3 +1,5 @@
+
+import { useLanguage } from "../i18n/useLanguage";
 import { useEffect, useState } from "react";
 
 function useClock() {
@@ -17,6 +19,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
+  const { language, setLanguage, t } = useLanguage();
   const now = useClock();
   const hh = String(now.getHours()).padStart(2, "0");
   const mm = String(now.getMinutes()).padStart(2, "0");
@@ -37,14 +40,31 @@ export default function Navbar() {
               href={l.href}
               className="text-muted transition-colors hover:text-phosphor hover:text-glow-sm"
             >
-              {l.label}
+              {t(l.label)}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-3 font-semibold text-bright">
-          <span aria-hidden="true">▮▮▯</span>
-          <time dateTime={now.toISOString()}>
+          <div className="language-toggle" role="group" aria-label={t("language")}>
+            {["id", "en"].map((code) => (
+              <button
+                key={code}
+                type="button"
+                lang={code}
+                aria-label={
+                  code === "id" ? "Bahasa Indonesia" : "English"
+                }
+                aria-pressed={language === code}
+                onClick={() => setLanguage(code)}
+              >
+                {code.toUpperCase()}
+              </button>
+            ))}
+          </div>
+          
+          <span className="hidden sm:inline" aria-hidden="true">▮▮▯</span>
+          <time className="hidden sm:block" dateTime={now.toISOString()}>
             {hh}:{mm}:{ss}
           </time>
         </div>

@@ -1,3 +1,5 @@
+import { useLanguage } from "../i18n/useLanguage";
+
 const DATA_ROWS = [
   { k: "ROLE", v: "ML / SOFTWARE ENGINEER" },
   { k: "FOCUS", v: "DEEP LEARNING, MLOPS, NLP" },
@@ -13,21 +15,16 @@ const STATS = [
 ];
 
 export default function About() {
+  const { t } = useLanguage();
   return (
     <section id="about" className="border-b border-dim-2 bg-void">
       <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <SectionEyebrow index="01" title="ABOUT.LOG" />
+        <SectionEyebrow index="01" title={t("ABOUT.LOG")} />
 
         <div className="mt-8 grid gap-5 md:grid-cols-5">
-          {/* Panel kiri: bio + data rows, mirip readout weather di referensi */}
           <div className="md:col-span-3 border border-dim-2 bg-panel p-6">
             <p className="text-sm leading-relaxed text-data sm:text-base">
-              I like dissecting how things work from their roots,
-              implementing manual Transformer architecture with NumPy,
-              model Build linear regression from zero, to design
-              automatic MLOps pipeline with MLflow, Docker, and GitHub
-              Actions. For me, understanding "why" something works together
-              importance to the final result.
+              {t("aboutBio")}
             </p>
 
             <div className="mt-6 border-t border-dim-2 pt-4">
@@ -36,14 +33,13 @@ export default function About() {
                   key={row.k}
                   className="flex items-center justify-between border-b border-dim-2/60 py-2 text-xs tracking-widest last:border-b-0"
                 >
-                  <span className="text-muted">{row.k}</span>
-                  <span className="text-bright">{row.v}</span>
+                  <span className="text-muted">{t(row.k)}</span>
+                  <span className="text-bright">{t(row.v)}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Panel kanan: stats seperti battery/charge widget */}
           <div className="md:col-span-2 grid grid-cols-2 gap-4">
             {STATS.map((s) => (
               <div
@@ -54,7 +50,7 @@ export default function About() {
                   {s.value}
                 </span>
                 <span className="mt-2 text-[10px] leading-tight tracking-widest text-muted">
-                  {s.label}
+                  {t(s.label)}
                 </span>
               </div>
             ))}
