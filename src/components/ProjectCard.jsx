@@ -1,69 +1,63 @@
+import { useCallback } from "react";
 import { useLanguage } from "../i18n/useLanguage";
+import { renderProjectPreview } from "../utils/asciiArt";
+import AsciiCanvas from "./AsciiCanvas";
 
-const STATUS_STYLES = {
-  DEPLOYED: "text-phosphor border-phosphor/50",
-  COMPLETE: "text-data border-dim",
-};
-
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, motionPaused }) {
   const { language, t } = useLanguage();
+
+  const renderPreview = useCallback(
+    (frame) => renderProjectPreview(project.id, frame),
+    [project.id]
+  );
+
   const Wrapper = project.url ? "a" : "div";
   const wrapperProps = project.url
-    ? { href: project.url, target: "_blank", rel: "noreferrer" }
+    ? { href: project.url, target: "_blank", rel: "noopener noreferrer" }
     : {};
 
   return (
     <Wrapper
+      id={`project-${project.id}`}
       {...wrapperProps}
-      className="group flex flex-col border border-dim-2 bg-panel p-5 transition-colors hover:border-phosphor/60 hover:bg-panel-hover"
+      className="project-card"
     >
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="text-sm font-bold tracking-wide text-bright sm:text-base">
-          {project.name[language]}
-        </h3>
+      <div className="well">
+        <AsciiCanvas
+          renderFrame={renderPreview}
+          cols={38}
+          rows={12}
+          fps={6}
+          paused={motionPaused}
+          label={project.name[language]}
+        />
+      </div>
+
+      <div className="card-header">
+        <h3 className="card-name">{project.name[language]}</h3>
         <span
-          className={`shrink-0 border px-2 py-0.5 text-[9px] font-semibold tracking-widest ${
-            STATUS_STYLES[project.status] ?? STATUS_STYLES.COMPLETE
+          className={`card-status ${
+            project.status === "DEPLOYED" ? "is-deployed" : ""
           }`}
         >
-          {t(project.status)}
+          [{t(project.status)}]
         </span>
       </div>
 
-      <p className="mt-3 flex-1 text-xs leading-relaxed text-data sm:text-sm">
-        {project.desc[language]}
-      </p>
+      <p className="card-desc">{project.desc[language]}</p>
 
-      <div className="mt-4 flex flex-wrap gap-1.5">
+      <div className="card-meta">
+        <span>{project.stack.join(" · ")}</span>
+        <span className="card-metric">
+          {t(project.metric.label)}: {t(project.metric.value)}
+        </span>
+      </div>
+
+      <div className="card-tags">
         {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="border border-dim-2 px-1.5 py-0.5 text-[9px] tracking-widest text-muted"
-          >
-            {t(tag)}
-          </span>
+          <span key={tag}>#{t(tag)}</span>
         ))}
       </div>
-
-      <div className="mt-4 flex items-center justify-between border-t border-dim-2 pt-3">
-        <div className="flex flex-wrap gap-2 text-[10px] text-dim">
-          {project.stack.join(" · ")}
-        </div>
-        <div className="shrink-0 text-right">
-          <div className="text-[9px] tracking-widest text-muted">
-            {t(project.metric.label)}
-          </div>
-          <div className="text-xs font-bold text-phosphor">
-            {t(project.metric.value)}
-          </div>
-        </div>
-      </div>
-
-      {project.url && (
-        <div className="mt-3 text-[10px] font-semibold tracking-widest text-dim opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-phosphor">
-          {t("OPEN_REPOSITORY →")}
-        </div>
-      )}
     </Wrapper>
   );
 }

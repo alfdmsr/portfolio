@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
 import { useLanguage } from "../i18n/useLanguage";
+import { imageToAscii } from "../utils/asciiArt";
 
 const DATA_ROWS = [
   { k: "ROLE", v: "ML / SOFTWARE ENGINEER" },
   { k: "FOCUS", v: "DEEP LEARNING, MLOPS, NLP" },
   { k: "BASED", v: "INDONESIA" },
   { k: "STATUS", v: "OPEN TO COLLAB" },
+  { k: "ENGINEER CODE", v: "ALM-ML-2026" },
 ];
 
 const STATS = [
@@ -16,59 +19,86 @@ const STATS = [
 
 export default function About() {
   const { t } = useLanguage();
+  const [showAscii, setShowAscii] = useState(false);
+  const [asciiPortrait, setAsciiPortrait] = useState("");
+
+  useEffect(() => {
+    if (!showAscii || asciiPortrait) return;
+    let active = true;
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      if (!active) return;
+      setAsciiPortrait(imageToAscii(img, 46, 28));
+    };
+    img.src = "/alife2.png";
+    return () => {
+      active = false;
+    };
+  }, [showAscii, asciiPortrait]);
+
   return (
-    <section id="about" className="border-b border-dim-2 bg-void">
-      <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <SectionEyebrow index="01" title={t("ABOUT.LOG")} />
+    <section id="about" className="page-section">
+      <div className="section-head">
+        <h2>{t("ABOUT.LOG")}</h2>
+        <span className="section-count">ALM-9.2</span>
+      </div>
 
-        <div className="mt-8 grid gap-5 md:grid-cols-5">
-          <div className="md:col-span-3 border border-dim-2 bg-panel p-6">
-            <p className="text-sm leading-relaxed text-data sm:text-base">
-              {t("aboutBio")}
-            </p>
+      <div className="about-grid">
+        <div>
+          <p className="about-bio">{t("aboutBio")}</p>
 
-            <div className="mt-6 border-t border-dim-2 pt-4">
+          <table className="meta-table">
+            <tbody>
               {DATA_ROWS.map((row) => (
-                <div
-                  key={row.k}
-                  className="flex items-center justify-between border-b border-dim-2/60 py-2 text-xs tracking-widest last:border-b-0"
-                >
-                  <span className="text-muted">{t(row.k)}</span>
-                  <span className="text-bright">{t(row.v)}</span>
-                </div>
+                <tr key={row.k}>
+                  <th scope="row">{t(row.k)}</th>
+                  <td>{t(row.v)}</td>
+                </tr>
               ))}
-            </div>
-          </div>
+            </tbody>
+          </table>
+        </div>
 
-          <div className="md:col-span-2 grid grid-cols-2 gap-4">
-            {STATS.map((s) => (
-              <div
-                key={s.label}
-                className="flex flex-col justify-between border border-dim-2 bg-panel-alt p-4"
+        <div className="portrait-box">
+          <div className={`portrait-well ${showAscii ? "is-ascii" : ""}`}>
+            {showAscii && asciiPortrait ? (
+              <pre
+                className="portrait-ascii"
+                role="img"
+                aria-label="ASCII portrait of Alif Masrur"
               >
-                <span className="text-3xl font-extrabold text-phosphor text-glow-sm sm:text-4xl">
-                  {s.value}
-                </span>
-                <span className="mt-2 text-[10px] leading-tight tracking-widest text-muted">
-                  {t(s.label)}
-                </span>
-              </div>
-            ))}
+                {asciiPortrait}
+              </pre>
+            ) : (
+              <img
+                src="/alife2.png"
+                alt="Alif Masrur"
+                className="portrait-img"
+              />
+            )}
+          </div>
+          <div className="portrait-controls">
+            <span>alif-masrur.png</span>
+            <button
+              type="button"
+              className="ascii-btn"
+              onClick={() => setShowAscii((v) => !v)}
+            >
+              <span>[{showAscii ? t("photoView") : t("asciiView")}]</span>
+            </button>
           </div>
         </div>
       </div>
-    </section>
-  );
-}
 
-export function SectionEyebrow({ index, title }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-xs font-bold text-dim">[{index}]</span>
-      <h2 className="text-xl font-bold tracking-widest text-phosphor sm:text-2xl">
-        {title}
-      </h2>
-      <span className="h-px flex-1 bg-dim-2" aria-hidden="true" />
-    </div>
+      <div className="slots">
+        {STATS.map((s) => (
+          <div key={s.label} className="slot">
+            <span className="slot-value">{s.value}</span>
+            <span className="slot-label">{t(s.label)}</span>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

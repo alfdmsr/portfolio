@@ -1,124 +1,124 @@
+import { useState } from "react";
 import { useLanguage } from "../i18n/useLanguage";
-import { useEffect, useState } from "react";
+import AsciiHero from "./AsciiHero";
 
-const BOOT_LINES = [
-  "INITIALIZING SYSTEM.PORTFOLIO...",
-  "LOADING MODULE: MACHINE_LEARNING [OK]",
-  "LOADING MODULE: SOFTWARE_ENGINEERING [OK]",
-  "RENDERING IDENTITY CARD...",
-  "IDENTITY VERIFIED - WELCOME",
-];
+const EMAIL = "halo.almasrur@gmail.com";
 
-const BOOT_STEP_MS = 300;
+export default function Hero({
+  theme,
+  onToggleTheme,
+  sidebarOpen,
+  onToggleSidebar,
+}) {
+  const { language, setLanguage, t } = useLanguage();
+  const [copied, setCopied] = useState(false);
 
+  async function handleCopyEmail() {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.assign(`mailto:${EMAIL}`);
+    }
+  }
 
-export default function Hero() {
-  const { language, t } = useLanguage();
-
-  const [bootStep, setBootStep] = useState(() => 
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches ? BOOT_LINES.length + 1 : 0);
-
-  const isBooting = bootStep <= BOOT_LINES.length;
-
-  useEffect(() => {
-    if (!isBooting) return;
-
-    const timer = window.setTimeout(() => {
-      setBootStep((step) => step + 1);
-    }, BOOT_STEP_MS);
-
-    return () => window.clearTimeout(timer);
-  }, [bootStep, isBooting]); 
+  const nextLanguage = language === "id" ? "en" : "id";
 
   return (
-    <section id="top" className="identity-hero" aria-label={t("profileLabel")}>
-      {isBooting && (
-        <div className="identity-boot">
-          <div className="identity-boot-terminal" lang={language}>
-            <div className="identity-boot-heading">
-              <span>{t("SYSTEM.PORTFOLIO // BOOT")}</span>
-              <span>
-                {Math.round((bootStep / BOOT_LINES.length) * 100)}%
-              </span>
-            </div>
-            <p className="sr-only" role="status">
-             {t("Loading portfolio...")}
-            </p>
+    <section
+      id="top"
+      className="page-section"
+      aria-label={t("profileLabel")}
+    >
+      <a className="notice" href="#contact">
+        <span className="notice-tag">{t("openTag")}</span>
+        <span className="notice-shine">{t("noticeText")}</span>
+        <span className="notice-go">[{t("contactAction")}]</span>
+      </a>
 
-            <div className="identity-boot-lines" aria-hidden="true">
-              {BOOT_LINES.slice(0, bootStep).map((line) => (
-                <p key={line}>
-                  <span>&gt; </span>
-                  {t(line)}
-                </p>
-              ))}
-              <span className="identity-boot-cursor"/>
-            </div>
-
-            <div className="identity-boot-track" aria-hidden="true">
-              <span
-                style={{
-                  width: `${(bootStep / BOOT_LINES.length) * 100}%`,
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      )}
-      <article className={`identity-card ${isBooting ? "identity-card-pending" : "identity-card-ready"}`} lang={language} inert={isBooting} aria-hidden={isBooting} aria-labelledby="hero-title">
-        <header className="identity-status">
-          <span className="identity-brand">ML / SWE</span>
-          <span className="identity-label">{t("SYSTEM ONLINE")}</span>
-          <span className="identity-signal" aria-hidden="true"><i /><i /><i /><i /></span>
-        </header>
-        <div className="identity-credentials">
-          <div>
-            <p className="identity-label">{t("ENGINEER")}</p>
-            <p className="identity-id">ALM-9.2</p>
-          </div>
-          <div className="identity-access" aria-hidden="true">
-            <p className="identity-label">{t("ACCESS")}</p>
-            <p className="identity-mask">**********</p>
-          </div>
-        </div>
-        <div className="identity-profile">
-          <div className="identity-avatar">
-            <img
-              src="/alife2.png"
-              alt="Alif Masrur"
-              className="identity-photo"
-            />
-          </div>
-          <div className="identity-details">
-            <p className="identity-system">SYSTEM.PORTFOLIO</p>
-            <span className="identity-mark" aria-hidden="true">/</span>
-            <p className="identity-label identity-code-label">{t("ENGINEER CODE")}</p>
-            <p className="identity-code">ALM-ML-2026</p>
-            <p className="identity-japanese" lang="ja">エンジニア</p>
-            <h1 id="hero-title" className="identity-title">
-              <span className="sr-only">Alif Masrur — </span>
-              {t("heroTitle")}
-            </h1>
-            <p className="identity-japanese" lang="ja">機械学習</p>
-          </div>
-        </div>
-        <p className="identity-bio">{t("heroBio")}</p>
-        <div className="px-5 py-5">
-            <a href="/resume-alif-english.pdf"
-               target="_blank"
-               rel="noopener noreferrer"
-               className="inline-block border border-phosphor px-5 py-3 text-sm text-phosphor transition-colors hover:bg-phosphor/10">
-                
-              {t("VIEW RESUME ↗")}
+      <div className="top">
+        <div className="top-heading">
+          {!sidebarOpen && (
+            <a className="top-brand" href="#top">
+              almas.sys
             </a>
+          )}
+          <h1>
+            Alif Masrur — {t("heroTitle")}
+          </h1>
         </div>
 
-        <footer className="identity-footer">
-          <span aria-hidden="true">✳</span>
-          <span>{t("MACHINE LEARNING ENGINEER")}</span>
-          <span aria-hidden="true">✳</span>
-        </footer>
-      </article>
+        <span className="top-tools">
+          <button
+            type="button"
+            className="ascii-btn"
+            aria-expanded={sidebarOpen}
+            aria-label={
+              sidebarOpen ? t("hideSidebarLabel") : t("showSidebarLabel")
+            }
+            onClick={onToggleSidebar}
+          >
+            <span>
+              [{sidebarOpen ? `− ${t("sidebar")}` : `+ ${t("sidebar")}`}]
+            </span>
+          </button>
+
+          <a
+            href="/resume-alif-english.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            [{t("VIEW RESUME ↗")}]
+          </a>
+
+          <button
+            type="button"
+            className="ascii-btn"
+            aria-label={t("language")}
+            onClick={() => setLanguage(nextLanguage)}
+          >
+            <span>[{language.toUpperCase()}/{nextLanguage.toUpperCase()}]</span>
+          </button>
+
+          <button
+            type="button"
+            className="ascii-btn"
+            aria-label={
+              theme === "dark" ? t("switchToLight") : t("switchToDark")
+            }
+            onClick={onToggleTheme}
+          >
+            <span>[{theme === "dark" ? t("light") : t("dark")}]</span>
+          </button>
+        </span>
+      </div>
+
+      {!sidebarOpen && (
+        <nav className="compact-nav" aria-label={t("sections")}>
+          <a href="#about">{t("ABOUT")}</a>
+          <a href="#experience">{t("EXPERIENCE")}</a>
+          <a href="#projects">{t("PROJECTS")}</a>
+          <a href="#skills">{t("SKILLS")}</a>
+          <a href="#contact">{t("CONTACT")}</a>
+        </nav>
+      )}
+
+      <AsciiHero onToggleTheme={onToggleTheme} theme={theme} />
+
+      <p className="pitch">{t("heroBio")}</p>
+
+      <div className="term-line">
+        <span>$ whoami</span>
+        <code>alif-masrur · ALM-ML-2026 · {EMAIL}</code>
+        <button
+          type="button"
+          className="ascii-btn"
+          onClick={handleCopyEmail}
+        >
+          <span>[{copied ? t("copied") : t("copyEmail")}]</span>
+        </button>
+      </div>
     </section>
   );
 }

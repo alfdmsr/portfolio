@@ -1,8 +1,34 @@
+import { useLanguage } from "../i18n/useLanguage";
+
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
-    <footer className="border-t border-dim-2 bg-void">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-6 text-[10px] tracking-widest text-dim sm:flex-row">
-        <span>ALMAS.SYS © {new Date().getFullYear()}</span>
+    <footer className="foot">
+      <span>almas.sys © {new Date().getFullYear()} · Alif Masrur</span>
+      <div className="foot-links">
+        <a href="#top">[{t("top")}]</a>
+        <a
+          href="https://github.com/alfdmsr"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          [github]
+        </a>
+        <a
+          href="https://www.linkedin.com/in/alifmasrur345/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          [linkedin]
+        </a>
+        <a
+          href="/resume-alif-english.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          [resume]
+        </a>
       </div>
     </footer>
   );

@@ -1,19 +1,20 @@
+import { useState } from "react";
 import { useLanguage } from "../i18n/useLanguage";
-import { SectionEyebrow } from "./About";
 
 const CHANNELS = [
   {
-    label: "EMAIL",
+    label: "email",
     value: "halo.almasrur@gmail.com",
     href: "mailto:halo.almasrur@gmail.com",
+    copyable: true,
   },
   {
-    label: "LINKEDIN",
+    label: "linkedin",
     value: "in/alif-masrur",
     href: "https://www.linkedin.com/in/alifmasrur345/",
   },
   {
-    label: "GITHUB",
+    label: "github",
     value: "@alfdmsr",
     href: "https://github.com/alfdmsr",
   },
@@ -21,48 +22,73 @@ const CHANNELS = [
 
 export default function Contact() {
   const { t } = useLanguage();
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopy(value) {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.assign(`mailto:${value}`);
+    }
+  }
 
   return (
-    <section id="contact" className="bg-void">
-      <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-        <SectionEyebrow index="04" title={t("CONTACT.SEND")} />
+    <section id="contact" className="page-section">
+      <div className="section-head">
+        <h2>{t("CONTACT.SEND")}</h2>
+        <span className="section-count">{CHANNELS.length}</span>
+      </div>
 
-        <div className="mt-8 border border-dim-2 bg-panel">
-          <div className="flex items-center justify-between border-b border-dim-2 px-5 py-3">
-            <span className="text-[11px] tracking-widest text-muted">
-              {t("NOTIFICATIONS")}
-            </span>
-            <span className="text-[11px] tracking-widest text-phosphor">
-              {CHANNELS.length}
-            </span>
-          </div>
+      <ul className="channel-list">
+        {CHANNELS.map((c) => (
+          <li key={c.label} className="channel-row">
+            <div className="channel-left">
+              <span className="channel-key">{c.label}</span>
+              <a
+                href={c.href}
+                target={c.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={c.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                className="dotted-link"
+              >
+                {c.value}
+              </a>
+            </div>
 
-          {CHANNELS.map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between gap-4 border-b border-dim-2 px-5 py-4 transition-colors last:border-b-0 hover:bg-panel-hover"
-            >
-              <div>
-                <div className="text-[10px] tracking-widest text-muted">
-                  {c.label}
-                </div>
-                <div className="mt-0.5 text-sm text-bright sm:text-base">
-                  {c.value}
-                </div>
-              </div>
-              <span className="shrink-0 text-dim transition-colors group-hover:text-phosphor">
-                →
-              </span>
-            </a>
-          ))}
-        </div>
+            <div className="channel-actions">
+              {c.copyable && (
+                <button
+                  type="button"
+                  className="ascii-btn"
+                  onClick={() => handleCopy(c.value)}
+                >
+                  <span>[{copied ? t("copied") : t("copy")}]</span>
+                </button>
+              )}
+              <a
+                href={c.href}
+                target={c.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={c.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                className="muted"
+              >
+                [{t("openLink")}]
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
 
-        <p className="mt-8 text-center text-[11px] tracking-widest text-dim">
-          {t("READY TO BUILD SOMETHING TOGETHER?")}
-        </p>
+      <div className="contact-cta">
+        <span>{t("READY TO BUILD SOMETHING TOGETHER?")}</span>
+        <a
+          href="/resume-alif-english.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="dotted-link"
+        >
+          [{t("resumeFull")}]
+        </a>
       </div>
     </section>
   );
