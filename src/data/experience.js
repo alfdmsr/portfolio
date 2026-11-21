@@ -23,6 +23,15 @@ export const experiences = [
       ],
     },
     stack: ["Google Cloud", "Cloud Computing", "AI Labs"],
+    certificate: {
+      images: [
+        {
+          src: "/certificates/google-fasilitator.jpg",
+          label: "Google Skills Arcade Facilitator 2026 — ID: GCAF-269-2026",
+        },
+      ],
+      url: "https://www.skills.google/public_profiles/3d448593-c9c9-440e-a8c3-c034153e7297/badges/25883916",
+    },
   },
   {
     id: "ahm-intern",

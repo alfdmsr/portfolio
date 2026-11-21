@@ -25,6 +25,12 @@ export const messages = {
   credAwards: ["penghargaan", "awards"],
   credCerts: ["sertifikasi", "certs"],
   verifyLink: ["verifikasi ↗", "verify ↗"],
+  viewCert: ["lihat", "view"],
+  viewCertLabel: ["lihat sertifikat", "certificate"],
+  closeModal: ["tutup", "close"],
+  openFull: ["buka penuh ↗", "open full ↗"],
+  prevCert: ["← sebelumnya", "← prev"],
+  nextCert: ["berikutnya →", "next →"],
 
   "SYSTEM ONLINE": ["sistem aktif", "system online"],
   ENGINEER: ["engineer", "engineer"],

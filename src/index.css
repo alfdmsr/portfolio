@@ -1020,6 +1020,20 @@ pre.art {
   color: var(--muted);
 }
 
+.exp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1.75ch;
+  margin-top: 0.55rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.exp-actions a {
+  color: var(--muted);
+}
+
 /* ============================================================================
    Projects Gallery Grid (matches ascii.rest .grid & .card)
    ============================================================================ */
@@ -1205,7 +1219,7 @@ pre.art {
 }
 
 /* ============================================================================
-   Credentials (Awards & Certifications — compact dotted list)
+   Credentials (Awards & Certifications — compact dotted list + preview modal)
    ============================================================================ */
 
 .credentials-toolbar {
@@ -1255,6 +1269,13 @@ pre.art {
   font-weight: 500;
 }
 
+.cred-title-btn {
+  color: var(--ink);
+  font-weight: 500;
+  white-space: normal;
+  text-align: left;
+}
+
 .cred-right {
   display: inline-flex;
   flex-wrap: wrap;
@@ -1281,6 +1302,102 @@ pre.art {
   font-size: 0.8125rem;
   color: var(--text);
   line-height: 1.65;
+}
+
+.cert-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(13, 17, 23, 0.78);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.cert-modal {
+  width: min(100%, 88ch);
+  max-height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px dotted var(--line);
+  padding: 1.25rem 2ch;
+  overflow: hidden;
+}
+
+.cert-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 2ch;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dotted var(--line);
+}
+
+.cert-modal-heading {
+  min-width: 0;
+}
+
+.cert-modal-sub {
+  margin-top: 0.2rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.cert-modal-stage {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  background: var(--well);
+  margin: 1rem 0;
+  padding: 0.75rem;
+  overflow: auto;
+}
+
+.cert-modal-img {
+  display: block;
+  max-width: 100%;
+  max-height: 64dvh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.cert-modal-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2ch;
+  padding-top: 0.85rem;
+  border-top: 1px dotted var(--line);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.cert-modal-caption {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cert-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1.75ch;
+}
+
+.cert-modal-actions a {
+  color: var(--muted);
+}
+
+.cert-modal-pager {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1.25ch;
 }
 
 /* ============================================================================
@@ -1554,6 +1671,24 @@ pre.art {
     padding: 0.9rem 0;
   }
 
+  .cert-modal-backdrop {
+    padding: 0.75rem;
+  }
+
+  .cert-modal {
+    padding: 1rem 1.25ch;
+    max-height: 92dvh;
+  }
+
+  .cert-modal-stage {
+    margin: 0.75rem 0;
+    padding: 0.5rem;
+  }
+
+  .cert-modal-img {
+    max-height: 56dvh;
+  }
+
   .meta-table th {
     width: 10ch;
     padding-right: 1.25ch;
@@ -1610,7 +1745,12 @@ pre.art {
   .tabs [role="tab"],
   .side-links a,
   .side-nav a,
+  .exp-actions a,
+  .exp-actions .ascii-btn,
   .cred-right a,
+  .cred-right .ascii-btn,
+  .cert-modal a,
+  .cert-modal .ascii-btn,
   .channel-actions a,
   .channel-actions .ascii-btn,
   .foot-links a {

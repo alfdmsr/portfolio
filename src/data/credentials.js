@@ -12,7 +12,8 @@ export const credentials = [
       id: 'Meraih Gold Medal & Runner-Up untuk proyek "AyoBikin".',
       en: 'Awarded Gold Medal & Runner-Up for the "AyoBikin" project.',
     },
-    // Isi URL kredensial/sertifikat jika ingin menampilkan tombol [lihat ↗] / [verify ↗]
+    // Tambahkan { src: "/certificates/nama-file.jpg", label: "..." } jika gambar sudah siap
+    images: [],
     url: "",
   },
   {
@@ -28,6 +29,12 @@ export const credentials = [
       id: 'Finalis 10 besar nasional untuk proyek Edge AI "Monetra" (Visual Currency Reader).',
       en: 'Top 10 national finalist for the "Monetra" AI Embedded Project.',
     },
+    images: [
+      {
+        src: "/certificates/sic-finalis.jpg",
+        label: "Samsung Innovation Campus Batch 7 — Finalist",
+      },
+    ],
     url: "",
   },
   {
@@ -43,11 +50,17 @@ export const credentials = [
       id: "Finalis 20 besar nasional dalam Nestlé #GreenGeneration Sustainability Business Case Competition.",
       en: "Top 20 national finalist in the Nestlé #GreenGeneration Sustainability Business Case Competition.",
     },
+    images: [
+      {
+        src: "/certificates/nestle.jpg",
+        label: "Nestlé #GreenGeneration — Top 20 Finalist",
+      },
+    ],
     url: "",
   },
   {
     id: "nvidia-dli-2026",
-    year: "2026",
+    year: "2025",
     kind: "cert",
     title: {
       id: "Fundamentals of Deep Learning & Transformer-Based NLP",
@@ -58,6 +71,18 @@ export const credentials = [
       id: "Tersertifikasi pada Fundamentals of Deep Learning & Building Transformer-Based NLP Applications.",
       en: "Certified in Fundamentals of Deep Learning & Building Transformer-Based NLP Applications.",
     },
+    images: [
+      {
+        src: "/certificates/nvidia-dli-2.png",
+        label: "Fundamentals of Deep Learning",
+        url: "https://learn.nvidia.com/certificates?id=ZdX_5mEfRg26Ko9lTongrg#"
+      },
+      {
+        src: "/certificates/nvidia-dli-1.png",
+        label: "Building Transformer-Based NLP Applications",
+        url: "https://learn.nvidia.com/certificates?id=vuL3ZHSGSsm-L3pf77g22g"
+      },
+    ],
     url: "",
   },
   {
@@ -73,6 +98,12 @@ export const credentials = [
       id: "Lulus penuh alur belajar Generative AI Engineer hingga tahap akhir (Level Expert).",
       en: "Graduated as Gen AI Engineer up to Level Expert (Final Tier).",
     },
+    images: [
+      {
+        src: "/certificates/idcamp-2025.jpeg",
+        label: "IDCamp 2025 — Gen AI Engineer (Level Expert)",
+      },
+    ],
     url: "",
   },
   {
@@ -88,6 +119,12 @@ export const credentials = [
       id: "Tersertifikasi pada program intensif AI Engineer Learning Path (Dicoding).",
       en: "Certified AI Engineer Learning Path graduate (Dicoding).",
     },
+    images: [
+      {
+        src: "/certificates/dbs-coding-camp.jpeg",
+        label: "DBS Foundation Coding Camp 2025 — AI Engineer",
+      },
+    ],
     url: "",
   },
   {
@@ -103,6 +140,12 @@ export const credentials = [
       id: "Menyelesaikan seluruh tahapan pelatihan hingga level akhir.",
       en: "Completed all training stages to the final level.",
     },
-    url: "",
+    images: [
+      {
+        src: "/certificates/microsoft-elevate.jpeg",
+        label: "Microsoft Elevate Training Center",
+      },
+    ],
+    url: "https://www.dicoding.com/elevate/certificates/PRE5Q5EAZX",
   },
 ];
