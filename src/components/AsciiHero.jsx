@@ -3,13 +3,14 @@ import { useLanguage } from "../i18n/useLanguage";
 import { experiences } from "../data/experience";
 import { projects } from "../data/projects";
 import { technologies } from "../data/skills";
+import { credentials } from "../data/credentials";
 
-const SHELL_SUGGESTIONS = ["help", "whoami", "exp", "ls", "skills", "contact", "resume"];
+const SHELL_SUGGESTIONS = ["help", "whoami", "exp", "ls", "skills", "certs", "contact", "resume"];
 
 const BANNER_DARK_URL =
-  "https://ascii.rest/banner/almas.dark.svg?shadow=ascii&art=a0&place=above&bg=0d1117";
+  "https://ascii.rest/banner/almas.dark.svg?shadow=ascii&art=ruby&bg=0d1117";
 const BANNER_LIGHT_URL =
-  "https://ascii.rest/banner/almas.svg?shadow=ascii&art=a0&place=above&bg=0d1117";
+  "https://ascii.rest/banner/almas.svg?shadow=ascii&art=ruby&bg=0d1117";
 
 export default function AsciiHero({ onToggleTheme, theme }) {
   const { language, t } = useLanguage();
@@ -41,8 +42,8 @@ export default function AsciiHero({ onToggleTheme, theme }) {
       case "help":
         output =
           language === "id"
-            ? "perintah: whoami · about · exp · ls (proyek) · skills · contact · resume · theme · clear"
-            : "commands: whoami · about · exp · ls (projects) · skills · contact · resume · theme · clear";
+            ? "perintah: whoami · about · exp · ls (proyek) · skills · certs · contact · resume · theme · clear"
+            : "commands: whoami · about · exp · ls (projects) · skills · certs · contact · resume · theme · clear";
         break;
       case "whoami":
         output = `alif masrur (ALM-9.2 / ALM-ML-2026)\nrole  : ML / Software Engineer\nfocus : Deep Learning, MLOps, NLP\nbased : Indonesia`;
@@ -72,6 +73,16 @@ export default function AsciiHero({ onToggleTheme, theme }) {
       case "skills":
       case "stack":
         output = technologies.map((item) => item.name).join(" · ");
+        break;
+      case "certs":
+      case "awards":
+      case "credentials":
+        output = credentials
+          .map(
+            (c) =>
+              `${c.year}  [${c.kind}]  ${c.title[language]} — ${c.issuer}`
+          )
+          .join("\n");
         break;
       case "contact":
         output =
@@ -136,7 +147,7 @@ export default function AsciiHero({ onToggleTheme, theme }) {
           aria-label="almas ASCII banner on ascii.rest"
         >
           <div className="well big banner-well">
-            <picture>
+            <picture className="hero-banner-picture">
               <source
                 media="(prefers-color-scheme: dark)"
                 srcSet={BANNER_DARK_URL}

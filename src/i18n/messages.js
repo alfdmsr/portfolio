@@ -3,6 +3,7 @@ export const messages = {
   EXPERIENCE: ["pengalaman", "experience"],
   PROJECTS: ["proyek", "projects"],
   SKILLS: ["teknologi", "stack"],
+  CREDENTIALS: ["sertifikat", "credentials"],
   CONTACT: ["kontak", "contact"],
   OVERVIEW: ["ringkasan", "overview"],
 
@@ -10,12 +11,20 @@ export const messages = {
   "EXPERIENCE.LOG": ["pengalaman", "experience"],
   "PROJECTS.DB": ["proyek", "projects"],
   "TECH_STACK.CFG": ["teknologi", "stack"],
+  "CREDENTIALS.LOG": ["penghargaan & sertifikat", "awards & certs"],
   "CONTACT.SEND": ["kontak", "contact"],
 
   INTERN: ["magang", "intern"],
   FULLTIME: ["penuh waktu", "full-time"],
   PROGRAM: ["program", "program"],
   TEACHING: ["pengajar", "teaching"],
+  AWARD: ["penghargaan", "award"],
+  CERT: ["sertifikat", "cert"],
+
+  credAll: ["semua", "all"],
+  credAwards: ["penghargaan", "awards"],
+  credCerts: ["sertifikasi", "certs"],
+  verifyLink: ["verifikasi ↗", "verify ↗"],
 
   "SYSTEM ONLINE": ["sistem aktif", "system online"],
   ENGINEER: ["engineer", "engineer"],
@@ -197,8 +206,8 @@ export const messages = {
   photoView: ["foto", "photo"],
 
   shellPlaceholder: [
-    "ketik perintah (coba: help, whoami, exp, ls, skills, contact)...",
-    "type a command (try: help, whoami, exp, ls, skills, contact)...",
+    "ketik perintah (coba: help, whoami, exp, ls, skills, certs, contact)...",
+    "type a command (try: help, whoami, exp, ls, skills, certs, contact)...",
   ],
   shellWelcome: [
     "Selamat datang di almas.sys shell. Ketik 'help' untuk daftar perintah.",

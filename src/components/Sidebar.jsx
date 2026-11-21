@@ -2,6 +2,7 @@ import { useLanguage } from "../i18n/useLanguage";
 import { experiences } from "../data/experience";
 import { projects } from "../data/projects";
 import { technologies } from "../data/skills";
+import { credentials } from "../data/credentials";
 
 const SECTION_ITEMS = [
   { id: "top", labelKey: "OVERVIEW" },
@@ -9,6 +10,7 @@ const SECTION_ITEMS = [
   { id: "experience", labelKey: "EXPERIENCE", count: experiences.length },
   { id: "projects", labelKey: "PROJECTS", count: projects.length },
   { id: "skills", labelKey: "SKILLS", count: technologies.length },
+  { id: "credentials", labelKey: "CREDENTIALS", count: credentials.length },
   { id: "contact", labelKey: "CONTACT", count: 3 },
 ];
 
@@ -36,7 +38,11 @@ export default function Sidebar({
   return (
     <aside className="side" aria-label={t("sidebar")}>
       <div className="side-header">
-        <a className="side-home" href="#top" onClick={onNavigateSection}>
+        <a
+          className="side-home"
+          href="#top"
+          onClick={() => onNavigateSection("top")}
+        >
           almas.sys
         </a>
         <button
@@ -80,7 +86,7 @@ export default function Sidebar({
         role="search"
         onSubmit={(e) => {
           e.preventDefault();
-          onNavigateSection();
+          onNavigateSection("projects");
           document
             .getElementById("projects")
             ?.scrollIntoView({ behavior: "smooth" });
@@ -127,7 +133,7 @@ export default function Sidebar({
               <a
                 href={`#${item.id}`}
                 aria-current={activeSection === item.id ? "location" : undefined}
-                onClick={onNavigateSection}
+                onClick={() => onNavigateSection(item.id)}
               >
                 <span className="side-nav-item-text">{t(item.labelKey)}</span>
                 {item.count !== undefined && (
@@ -139,7 +145,10 @@ export default function Sidebar({
         </ul>
 
         <h3 className="side-group-title">
-          <a href="#projects" onClick={onNavigateSection}>
+          <a
+            href="#projects"
+            onClick={() => onNavigateSection("projects")}
+          >
             {t("projectsIndex")}
           </a>
           <span className="count">{projects.length}</span>

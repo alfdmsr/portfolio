@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "../i18n/useLanguage";
 import { imageToAscii } from "../utils/asciiArt";
 
+const PORTRAIT_SRC = "/alip.jpeg";
+
 const DATA_ROWS = [
   { k: "ROLE", v: "ML / SOFTWARE ENGINEER" },
   { k: "FOCUS", v: "DEEP LEARNING, MLOPS, NLP" },
@@ -31,7 +33,7 @@ export default function About() {
       if (!active) return;
       setAsciiPortrait(imageToAscii(img, 46, 28));
     };
-    img.src = "/alife2.png";
+    img.src = PORTRAIT_SRC;
     return () => {
       active = false;
     };
@@ -72,14 +74,14 @@ export default function About() {
               </pre>
             ) : (
               <img
-                src="/alife2.png"
+                src={PORTRAIT_SRC}
                 alt="Alif Masrur"
                 className="portrait-img"
               />
             )}
           </div>
           <div className="portrait-controls">
-            <span>alif-masrur.png</span>
+            <span>photo.jpeg</span>
             <button
               type="button"
               className="ascii-btn"

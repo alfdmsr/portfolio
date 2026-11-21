@@ -6,12 +6,21 @@ import About from "./components/About";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
+import Credentials from "./components/Credentials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 const THEME_KEY = "portfolio-theme";
 const SIDEBAR_KEY = "portfolio-sidebar";
-const SECTION_IDS = ["top", "about", "experience", "projects", "skills", "contact"];
+const SECTION_IDS = [
+  "top",
+  "about",
+  "experience",
+  "projects",
+  "skills",
+  "credentials",
+  "contact",
+];
 const DESKTOP_BREAKPOINT = 1024;
 
 function getInitialTheme() {
@@ -111,28 +120,53 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [booting]);
 
-  // Track active section for sidebar highlight
+  // Track active section reliably across tall and bottom-most sections
   useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
-    const elements = SECTION_IDS.map((id) => document.getElementById(id)).filter(
-      Boolean
-    );
-    if (elements.length === 0) return;
+    let rafId = 0;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]?.target?.id) {
-          setActiveSection(visible[0].target.id);
+    function updateActiveSection() {
+      rafId = 0;
+      const elements = SECTION_IDS.map((id) => ({
+        id,
+        el: document.getElementById(id),
+      })).filter((item) => item.el);
+
+      if (elements.length === 0) return;
+
+      const atBottom =
+        window.scrollY > 0 &&
+        window.scrollY + window.innerHeight >=
+          document.documentElement.scrollHeight - 4;
+
+      if (atBottom) {
+        setActiveSection(elements[elements.length - 1].id);
+        return;
+      }
+
+      const triggerY = Math.min(window.innerHeight * 0.32, 260);
+      let current = elements[0].id;
+      for (const { id, el } of elements) {
+        if (el.getBoundingClientRect().top <= triggerY) {
+          current = id;
         }
-      },
-      { rootMargin: "-15% 0px -65% 0px", threshold: [0, 0.25, 0.5] }
-    );
+      }
+      setActiveSection(current);
+    }
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    function scheduleUpdate() {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(updateActiveSection);
+    }
+
+    updateActiveSection();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate, { passive: true });
+
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
   }, []);
 
   const handleBootComplete = useCallback(() => {
@@ -168,7 +202,10 @@ export default function App() {
     });
   }, []);
 
-  const handleNavigateSection = useCallback(() => {
+  const handleNavigateSection = useCallback((sectionId) => {
+    if (typeof sectionId === "string" && SECTION_IDS.includes(sectionId)) {
+      setActiveSection(sectionId);
+    }
     if (typeof window !== "undefined" && window.innerWidth < DESKTOP_BREAKPOINT) {
       setSidebarOpen(false);
     }
@@ -217,6 +254,7 @@ export default function App() {
             onToggleMotion={handleToggleMotion}
           />
           <Skills />
+          <Credentials />
           <Contact />
           <Footer />
         </main>

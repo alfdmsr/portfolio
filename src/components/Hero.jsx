@@ -100,6 +100,7 @@ export default function Hero({
           <a href="#experience">{t("EXPERIENCE")}</a>
           <a href="#projects">{t("PROJECTS")}</a>
           <a href="#skills">{t("SKILLS")}</a>
+          <a href="#credentials">{t("CREDENTIALS")}</a>
           <a href="#contact">{t("CONTACT")}</a>
         </nav>
       )}

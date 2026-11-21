@@ -587,7 +587,7 @@ a:focus-visible,
   container-type: normal;
   display: grid;
   place-items: center;
-  padding: 1.75rem 1.5ch;
+  padding: 2.25rem 2ch;
 }
 
 .hero-banner-link {
@@ -608,9 +608,14 @@ a:focus-visible,
   outline-offset: 4px;
 }
 
+.hero-banner-picture {
+  display: block;
+  width: 100%;
+}
+
 .hero-banner-img {
   display: block;
-  width: min(100%, 320px);
+  width: min(100%, 560px);
   height: auto;
   margin-inline: auto;
 }
@@ -873,7 +878,7 @@ pre.art {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 22%;
   display: block;
   filter: grayscale(100%) contrast(1.06);
   transition: filter 220ms ease;
@@ -1200,6 +1205,85 @@ pre.art {
 }
 
 /* ============================================================================
+   Credentials (Awards & Certifications — compact dotted list)
+   ============================================================================ */
+
+.credentials-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2ch;
+  margin-bottom: 1.15rem;
+}
+
+.cred-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px dotted var(--line);
+}
+
+.cred-item {
+  display: grid;
+  grid-template-columns: 7ch minmax(0, 1fr);
+  gap: 0.35rem 2.5ch;
+  padding: 1rem 0;
+  border-bottom: 1px dotted var(--line);
+}
+
+.cred-year {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.cred-body {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cred-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 2ch;
+}
+
+.cred-title {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.cred-right {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1.5ch;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.cred-right a {
+  color: var(--muted);
+}
+
+.cred-issuer {
+  margin-top: 0.15rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.cred-detail {
+  margin-top: 0.35rem;
+  max-width: 68ch;
+  font-size: 0.8125rem;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+/* ============================================================================
    Contact Channel Rows
    ============================================================================ */
 
@@ -1432,11 +1516,12 @@ pre.art {
   }
 
   .well.banner-well {
-    padding: 1.25rem 1ch;
+    min-height: 10.5rem;
+    padding: 1.5rem 1.25ch;
   }
 
   .hero-banner-img {
-    width: min(100%, 260px);
+    width: 100%;
   }
 
   .well.terminal-well {
@@ -1461,6 +1546,12 @@ pre.art {
 
   .stack-slot {
     height: 5.75rem;
+  }
+
+  .cred-item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+    padding: 0.9rem 0;
   }
 
   .meta-table th {
@@ -1519,6 +1610,7 @@ pre.art {
   .tabs [role="tab"],
   .side-links a,
   .side-nav a,
+  .cred-right a,
   .channel-actions a,
   .channel-actions .ascii-btn,
   .foot-links a {
