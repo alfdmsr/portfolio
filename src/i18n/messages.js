@@ -145,6 +145,7 @@ export const messages = {
   "MODAL T4": ["Modal T4", "Modal T4"],
   MODEL: ["model", "model"],
   "SD v1.5": ["SD v1.5", "SD v1.5"],
+  "LLAMA-3 8B": ["Llama-3 8B", "Llama-3 8B"],
   REASONING: ["penalaran", "reasoning"],
   PIPELINE: ["pipeline", "pipeline"],
   "2-STAGE": ["2 tahap", "2-stage"],

@@ -212,27 +212,27 @@ export function renderProjectPreview(projectId, frame) {
     }
 
     case "legal-rag": {
-      // Vector DB -> Hybrid Search / HyDE -> Llama-3 GRPO
+      // Docs -> BM25+Dense RRF + CPU Relevance Gate -> Modal GPU 4-bit Llama-3
       drawBox(g, 1, 1, 11, 5, "docs");
-      writeText(g, 3, 3, "uu-13/03");
-      writeText(g, 3, 4, "chroma");
+      writeText(g, 3, 3, "uu 6/23");
+      writeText(g, 3, 4, "pp 35/21");
 
-      drawBox(g, 24, 1, 13, 5, "grpo");
+      drawBox(g, 24, 1, 13, 5, "modal");
       const dots = ".".repeat((Math.floor(t / 3) % 3) + 1).padEnd(3, " ");
       writeText(g, 26, 3, "llama-3");
-      writeText(g, 26, 4, `think${dots}`);
+      writeText(g, 26, 4, `4-bit${dots}`);
 
-      // Animated retrieval packets flowing left -> right
+      // Animated retrieval packets flowing left -> right through CPU gate
       const span = 12;
       const pulse = t % span;
       for (let i = 0; i < span; i++) {
         const ch = i === pulse ? "●" : i === (pulse - 1 + span) % span ? "•" : "·";
         writeText(g, 12 + i, 3, ch);
       }
-      writeText(g, 14, 2, "hyde+rag");
+      writeText(g, 14, 2, "rrf+gate");
 
-      // Bottom token stream box
-      drawBox(g, 1, 7, 36, 4, "reasoning");
+      // Bottom reranker -> GPU stream box
+      drawBox(g, 1, 7, 36, 4, "bge-reranker · cpu->gpu");
       const barLen = 4 + (t % 26);
       writeText(g, 3, 9, "▓".repeat(barLen) + "░".repeat(30 - barLen));
       return gridToString(g);

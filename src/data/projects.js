@@ -48,14 +48,15 @@ export const projects = [
     tags: ["LLM", "RAG", "FINE-TUNE"],
     status: "DEPLOYED",
     desc: {
-      id: "Chatbot hukum ketenagakerjaan berbasis Llama-3-8B fine-tuned + GRPO reasoning, dengan hybrid search, HyDE, dan reranking.",
-      en: "An employment law chatbot built on a fine-tuned Llama-3-8B with GRPO reasoning, hybrid search, HyDE, and reranking.",
+      id: "Chatbot hukum ketenagakerjaan (Llama-3-8B fine-tuned + eksperimen GRPO) dengan BM25+dense RRF, bge-reranker-v2-m3 gate di CPU, dan worker GPU 4-bit serverless di Modal.",
+      en: "Indonesian employment law chatbot (fine-tuned Llama-3-8B + GRPO experiments) with BM25+dense RRF, CPU bge-reranker-v2-m3 relevance gate, and serverless 4-bit GPU worker on Modal.",
     },
-    stack: ["Unsloth", "LoRA", "LangChain", "ChromaDB"],
-    url: "https://github.com/alfdmsr/Fine-tuned-Chatbot-Tim-Legal-berbasis-RAG",
+    stack: ["Unsloth", "LoRA", "Modal", "Gradio"],
+    demoUrl: "https://alfdmsr--legal-rag-public-preview-web.us-east.modal.run/",
+    url: "https://github.com/alfdmsr/Fine-tuned-Chatbot-Tim-Legal-berbasis-RAG/tree/checkpoint/modal-legal-rag-2026-10-31",
     metric: {
-      label: "REASONING",
-      value: "GRPO",
+      label: "MODEL",
+      value: "LLAMA-3 8B",
     },
   },
   {
