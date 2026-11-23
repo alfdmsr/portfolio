@@ -590,24 +590,6 @@ a:focus-visible,
   padding: 2.25rem 2ch;
 }
 
-.hero-banner-link {
-  display: block;
-  padding: 0;
-  margin: 0;
-}
-
-@media (hover: hover) {
-  .hero-banner-link:hover {
-    background: transparent;
-  }
-}
-
-.hero-banner-link:focus-visible {
-  background: transparent;
-  outline: 1px dotted var(--ink);
-  outline-offset: 4px;
-}
-
 .hero-banner-picture {
   display: block;
   width: 100%;

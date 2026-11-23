@@ -60,7 +60,7 @@ export const messages = {
   ],
 
   "VIEW RESUME ↗": ["resume ↗", "resume ↗"],
-  resumeFull: ["lihat resume (inggris) ↗", "view resume ↗"],
+  resumeFull: ["lihat resume", "view resume"],
 
   "Loading portfolio...": ["Memuat portofolio...", "Loading portfolio..."],
   "SYSTEM.PORTFOLIO // BOOT": [
@@ -181,7 +181,7 @@ export const messages = {
   copy: ["salin", "copy"],
   copied: ["tersalin", "copied"],
   copyEmail: ["salin email", "copy email"],
-  openLink: ["buka ↗", "open ↗"],
+  openLink: ["buka", "open"],
   top: ["atas", "top"],
 
   sidebar: ["sidebar", "sidebar"],

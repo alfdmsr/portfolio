@@ -139,27 +139,19 @@ export default function AsciiHero({ onToggleTheme, theme }) {
       </div>
 
       {mode === "banner" && (
-        <a
-          href="https://ascii.rest/banner/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hero-banner-link"
-          aria-label="almas ASCII banner on ascii.rest"
-        >
-          <div className="well big banner-well">
-            <picture className="hero-banner-picture">
-              <source
-                media="(prefers-color-scheme: dark)"
-                srcSet={BANNER_DARK_URL}
-              />
-              <img
-                alt="almas"
-                src={theme === "dark" ? BANNER_DARK_URL : BANNER_LIGHT_URL}
-                className="hero-banner-img"
-              />
-            </picture>
-          </div>
-        </a>
+        <div className="well big banner-well">
+          <picture className="hero-banner-picture">
+            <source
+              media="(prefers-color-scheme: dark)"
+              srcSet={BANNER_DARK_URL}
+            />
+            <img
+              alt="almas"
+              src={theme === "dark" ? BANNER_DARK_URL : BANNER_LIGHT_URL}
+              className="hero-banner-img"
+            />
+          </picture>
+        </div>
       )}
 
       {mode === "shell" && (
