@@ -140,6 +140,53 @@ export function renderProjectPreview(projectId, frame) {
   const t = frame;
 
   switch (projectId) {
+    case "stable-diffusion": {
+      // Latent denoising canvas (noise -> crisp scene) + StudioAI modes on Modal T4
+      const cycle = t % 28;
+      const clarity = Math.min(1, cycle / 18);
+      const stepNum = Math.min(50, Math.round(clarity * 50));
+      writeText(
+        g,
+        1,
+        0,
+        `sd v1.5 · modal t4 · step ${String(stepNum).padStart(2, "0")}/50`
+      );
+
+      drawBox(g, 1, 2, 19, 9, "denoise");
+      const target = [
+        "    ·   *   ○  ",
+        "        ·      ",
+        "     /\\        ",
+        "    /  \\  /\\   ",
+        "   / /\\ \\/  \\  ",
+        "  / /  \\    /\\ ",
+        " ▓▓▓▓▓▓▓▓▓▓▓▓▓ ",
+      ];
+      const noiseChars = ["·", ":", "░", "▒", "▓"];
+      for (let r = 0; r < target.length; r++) {
+        for (let c = 0; c < target[r].length; c++) {
+          const hash = Math.sin((r + 1) * 91.7 + (c + 1) * 47.3) * 43758.5453;
+          const threshold = hash - Math.floor(hash);
+          const resolved = clarity >= threshold * 0.85;
+          const ch = resolved
+            ? target[r][c]
+            : noiseChars[(r * 7 + c * 3 + t) % noiseChars.length];
+          writeText(g, 3 + c, 3 + r, ch);
+        }
+      }
+
+      drawBox(g, 22, 2, 15, 9, "studioai");
+      const modes = ["txt2img", "img2img", "inpaint", "outpaint"];
+      const activeMode = Math.floor(t / 7) % modes.length;
+      modes.forEach((m, idx) => {
+        const prefix = idx === activeMode ? ">" : " ";
+        writeText(g, 24, 4 + idx, `${prefix} ${m}`);
+      });
+      const barFill = Math.round(clarity * 10);
+      writeText(g, 24, 9, "█".repeat(barFill) + "░".repeat(10 - barFill));
+      return gridToString(g);
+    }
+
     case "legal-rag": {
       // Vector DB -> Hybrid Search / HyDE -> Llama-3 GRPO
       drawBox(g, 1, 1, 11, 5, "docs");

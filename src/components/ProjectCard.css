@@ -1,0 +1,88 @@
+.card-primary-link {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
+
+@media (hover: hover) {
+  .project-card.has-actions:hover .card-name {
+    background: transparent;
+    color: var(--ink);
+  }
+  .project-card.has-actions:hover .well {
+    background: var(--well);
+  }
+  .project-card.has-actions .card-primary-link:hover {
+    background: transparent;
+    color: var(--text);
+  }
+  .project-card.has-actions .card-primary-link:hover .card-name {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .project-card.has-actions .card-primary-link:hover .well {
+    background: var(--well-hover);
+  }
+}
+
+.card-primary-link:focus-visible {
+  background: transparent;
+  color: var(--text);
+  outline: none;
+}
+
+.card-primary-link:focus-visible .card-name {
+  background: var(--ink);
+  color: var(--bg);
+  outline: 1px dotted var(--ink);
+  outline-offset: 2px;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+}
+
+.card-footer .card-tags {
+  margin-top: 0;
+}
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1.75ch;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.card-links .card-repo-link {
+  color: var(--muted);
+}
+
+@media (hover: hover) {
+  .card-links a:hover {
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration-line: none;
+  }
+}
+
+.card-links a:focus-visible {
+  background: var(--ink);
+  color: var(--bg);
+  outline: 1px dotted var(--ink);
+  outline-offset: 2px;
+  text-decoration-line: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .card-links a {
+    padding-block: 0.25rem;
+  }
+}

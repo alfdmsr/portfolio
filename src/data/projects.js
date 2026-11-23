@@ -1,5 +1,25 @@
 export const projects = [
   {
+    id: "stable-diffusion",
+    name: {
+      id: "StudioAI — Stable Diffusion",
+      en: "StudioAI — Stable Diffusion",
+    },
+    tags: ["GEN AI", "DIFFUSION", "DEEP LEARNING"],
+    status: "DEPLOYED",
+    desc: {
+      id: "Pipeline Stable Diffusion v1.5 (text-to-image, img2img refiner, inpainting, outpainting) dengan aplikasi web StudioAI — dideploy serverless di Modal GPU NVIDIA T4 (scale-to-zero).",
+      en: "Stable Diffusion v1.5 pipeline (text-to-image, img2img refiner, inpainting, outpainting) powering the StudioAI web app — deployed serverless on Modal NVIDIA T4 GPU (scale-to-zero).",
+    },
+    stack: ["PyTorch", "Diffusers", "Modal", "Streamlit"],
+    demoUrl: "https://alfdmsr--studioai-stable-diffusion-serve-ui.modal.run",
+    url: "https://github.com/alfdmsr/Image-Generation-with-Stable-Diffusion/tree/feat/modal-deploy",
+    metric: {
+      label: "DEPLOY",
+      value: "MODAL T4",
+    },
+  },
+  {
     id: "legal-rag",
     name: {
       id: "Chatbot RAG Hukum",

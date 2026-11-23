@@ -11,7 +11,11 @@ export function getProjectCategory(project) {
   if (tags.some((t) => ["LLM", "RAG", "NLP", "SENTIMENT", "FINE-TUNE"].includes(t))) {
     return "llm";
   }
-  if (tags.some((t) => ["DEEP LEARNING", "COMPUTER VISION", "CNN", "TIME SERIES"].includes(t))) {
+  if (
+    tags.some((t) =>
+      ["DEEP LEARNING", "COMPUTER VISION", "CNN", "TIME SERIES", "GEN AI", "DIFFUSION"].includes(t)
+    )
+  ) {
     return "dl";
   }
   if (tags.some((t) => ["MLOPS", "CI/CD", "CLUSTERING", "CLASSIFICATION", "ML"].includes(t))) {

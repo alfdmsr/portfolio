@@ -118,6 +118,8 @@ export const messages = {
   COMPLETE: ["selesai", "complete"],
 
   "OPEN_REPOSITORY →": ["buka repo ↗", "open repo ↗"],
+  liveDemo: ["demo langsung ↗", "live demo ↗"],
+  repoLink: ["repo ↗", "repo ↗"],
 
   technologies: [
     "Teknologi yang pernah saya gunakan dalam proyek.",
@@ -138,6 +140,10 @@ export const messages = {
     "Alif Masrur — Machine Learning & Software Engineer. A portfolio of ML, deep learning, and MLOps projects.",
   ],
 
+  DEPLOY: ["deploy", "deploy"],
+  "MODAL T4": ["Modal T4", "Modal T4"],
+  MODEL: ["model", "model"],
+  "SD v1.5": ["SD v1.5", "SD v1.5"],
   REASONING: ["penalaran", "reasoning"],
   PIPELINE: ["pipeline", "pipeline"],
   "2-STAGE": ["2 tahap", "2-stage"],
@@ -153,6 +159,8 @@ export const messages = {
   LANG: ["bahasa", "lang"],
   MAE: ["mae", "mae"],
 
+  "GEN AI": ["gen ai", "gen ai"],
+  DIFFUSION: ["difusi", "diffusion"],
   "FINE-TUNE": ["fine-tuning", "fine-tune"],
   "DEEP LEARNING": ["deep learning", "deep learning"],
   "TIME SERIES": ["deret waktu", "time series"],
@@ -189,7 +197,7 @@ export const messages = {
   showSidebarLabel: ["Tampilkan sidebar", "Show sidebar"],
   hideSidebarLabel: ["Sembunyikan sidebar", "Hide sidebar"],
 
-  searchPlaceholder: ["cari 10 proyek", "search 10 projects"],
+  searchPlaceholder: ["cari 11 proyek", "search 11 projects"],
   searchLabel: ["Cari proyek", "Search projects"],
   noProjectsFound: [
     "Tidak ada proyek yang cocok dengan filter tersebut.",
