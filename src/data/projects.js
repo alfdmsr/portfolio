@@ -1,5 +1,25 @@
 export const projects = [
   {
+    id: "pm25-bandung",
+    name: {
+      id: "Prakiraan PM2.5 Bandung",
+      en: "Bandung PM2.5 Forecast",
+    },
+    tags: ["ML", "MLOPS", "FORECASTING"],
+    status: "DEPLOYED",
+    desc: {
+      id: "Sistem prakiraan kualitas udara PM2.5 3 jam ke depan di 5 stasiun Bandung (HistGradientBoosting, MAE 4.60 µg/m³) dengan FastAPI, Streamlit, Docker, dan 47 unit test.",
+      en: "3-hour-ahead PM2.5 air quality forecasting across 5 Bandung stations (HistGradientBoosting, MAE 4.60 µg/m³) with FastAPI, Streamlit, Docker, and 47 passing tests.",
+    },
+    stack: ["FastAPI", "Streamlit", "Scikit-learn", "Docker"],
+    demoUrl: "https://pm25-bandung.streamlit.app/",
+    url: "https://github.com/alfdmsr/pm25-forecast-bandung",
+    metric: {
+      label: "RECALL",
+      value: "94%",
+    },
+  },
+  {
     id: "stable-diffusion",
     name: {
       id: "StudioAI — Stable Diffusion",

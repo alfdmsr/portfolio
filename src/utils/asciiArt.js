@@ -140,6 +140,30 @@ export function renderProjectPreview(projectId, frame) {
   const t = frame;
 
   switch (projectId) {
+    case "pm25-bandung": {
+      // 5 Bandung stations · +3h PM2.5 forecast & 39 µg/m³ warning threshold
+      writeText(g, 1, 0, "pm2.5 bandung · +3h     recall 94%");
+      const stations = [
+        { name: "dago     ", base: 24, amp: 8 },
+        { name: "soetta   ", base: 46, amp: 14 },
+        { name: "cibeureum", base: 36, amp: 12 },
+        { name: "antapani ", base: 31, amp: 10 },
+        { name: "u.berung ", base: 28, amp: 9 },
+      ];
+      stations.forEach((st, idx) => {
+        const y = 2 + idx * 2;
+        const val = Math.round(st.base + Math.sin(t * 0.22 + idx * 1.4) * st.amp);
+        const len = Math.max(2, Math.min(13, Math.round((val / 70) * 13)));
+        const warn = val >= 39;
+        writeText(g, 1, y, st.name);
+        writeText(g, 10, y, "│");
+        writeText(g, 11, y, "█".repeat(len) + "░".repeat(13 - len));
+        writeText(g, 25, y, `${String(val).padStart(2, " ")}µg`);
+        writeText(g, 30, y, warn ? "[WARN]" : "[ OK ]");
+      });
+      return gridToString(g);
+    }
+
     case "stable-diffusion": {
       // Latent denoising canvas (noise -> crisp scene) + StudioAI modes on Modal T4
       const cycle = t % 28;

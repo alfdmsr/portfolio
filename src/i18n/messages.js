@@ -140,6 +140,7 @@ export const messages = {
     "Alif Masrur — Machine Learning & Software Engineer. A portfolio of ML, deep learning, and MLOps projects.",
   ],
 
+  RECALL: ["recall", "recall"],
   DEPLOY: ["deploy", "deploy"],
   "MODAL T4": ["Modal T4", "Modal T4"],
   MODEL: ["model", "model"],
@@ -159,6 +160,7 @@ export const messages = {
   LANG: ["bahasa", "lang"],
   MAE: ["mae", "mae"],
 
+  FORECASTING: ["prakiraan", "forecasting"],
   "GEN AI": ["gen ai", "gen ai"],
   DIFFUSION: ["difusi", "diffusion"],
   "FINE-TUNE": ["fine-tuning", "fine-tune"],
@@ -197,7 +199,7 @@ export const messages = {
   showSidebarLabel: ["Tampilkan sidebar", "Show sidebar"],
   hideSidebarLabel: ["Sembunyikan sidebar", "Hide sidebar"],
 
-  searchPlaceholder: ["cari 11 proyek", "search 11 projects"],
+  searchPlaceholder: ["cari 12 proyek", "search 12 projects"],
   searchLabel: ["Cari proyek", "Search projects"],
   noProjectsFound: [
     "Tidak ada proyek yang cocok dengan filter tersebut.",
